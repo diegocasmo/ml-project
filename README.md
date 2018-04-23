@@ -1,6 +1,8 @@
-# ML Project - [Toxic Comment Classification](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
+# ML Project - [Galaxy Zoo - The Galaxy Challenge](https://www.kaggle.com/c/galaxy-zoo-the-galaxy-challenge)
 
 ## Installation
   - [Install Anaconda ](https://www.continuum.io/downloads)
   - Run ``conda env create -f environment.yml`` to install dependencies
   - Run ``source activate ml`` to activate environment
+  - [Download datasets](https://www.kaggle.com/c/galaxy-zoo-the-galaxy-challenge/data)
+  - Place and uncompress datasets in the ``/data`` directory

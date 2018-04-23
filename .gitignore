@@ -199,5 +199,19 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Ignore dataset compressed and uncompressed files
+/data/all_ones_benchmark.zip
+/data/all_zeros_benchmark.zip
+/data/central_pixel_benchmark.zip
+/data/images_test_rev1.zip
+/data/images_training_rev1.zip
+/data/training_solutions_rev1.zip
+/data/all_ones_benchmark.csv
+/data/all_zeros_benchmark.csv
+/data/central_pixel_benchmark.csv
+/data/images_test_rev1/*
+/data/images_training_rev1/*
+/data/training_solutions_rev1.csv
 
-# End of https://www.gitignore.io/api/git,macos,linux,python,windows,sublimetext
+# Ignore papers
+/papers/*
