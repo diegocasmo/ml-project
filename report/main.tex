@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{listings}
+\lstset{% parameters for all code listings
+  language=Python,
+  frame=single,
+  columns=fullflexible,
+  basicstyle=\small
+}
+
+% Custom macro for including images, \mfigure{img-name}{caption}
+\newcommand{\mfigure}[2]{
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.40\textheight,keepaspectratio]{figures/#1.jpg}
+    \caption{#2}
+    \label{fig:#1}
+\end{figure}
+}
+
+\title{Machine Learning \\ Project Report by Group 6}
+\author{Diego Castillo \and Ankur Shukla \and Tristan Wright }
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/introduction.tex}
+\input{sections/data.tex}
+\input{sections/methods.tex}
+\input{sections/results.tex}
+% \input{discussion.tex}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
