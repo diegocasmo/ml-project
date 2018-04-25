@@ -211,6 +211,8 @@ $RECYCLE.BIN/
 /data/central_pixel_benchmark.csv
 /data/images_test_rev1/*
 /data/images_training_rev1/*
+/data/training/*
+/data/validation/*
 /data/training_solutions_rev1.csv
 
 # Ignore papers
