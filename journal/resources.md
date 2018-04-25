@@ -10,6 +10,8 @@ Great examples of preprocessing and a successful network architecture. Correspon
 - [Machine learning and image analysis for morphological galaxy classification](https://academic.oup.com/mnras/article/349/1/87/3101624)
 > In this paper we present an experimental study of machine learning and image analysis for performing automated morphological galaxy classification. We used a neural network, and a locally weighted regression method, and implemented homogeneous ensembles of classifiers.
 
+- [Galaxy Zoo: Reproducing Galaxy Morphologies Via Machine Learning](https://arxiv.org/abs/0908.2033)
+
 ## Kernels / Repositories
 
 - [Repository for the winning Galaxy submission](https://github.com/benanne/kaggle-galaxies)
@@ -18,4 +20,6 @@ Corresponding blog post above.
 ## Other resources
 
 - [Deep Learning with Keras + TensorFlow](https://www.youtube.com/watch?v=N3oMKS1AfVI&list=PLX-LrBk6h3wR27xylD3Rsx4bbA15jlcYC): this is a nice and simple playlist on how to use keras CNNs
+
+ - [Splitting of data in test and validation ratio](https://www.researchgate.net/publication/228911350_Data_Division_for_Developing_Neural_Networks_Applied_to_Geotechnical_Engineering)
 
