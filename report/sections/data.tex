@@ -10,12 +10,12 @@ There are \numprint{61578} images for training, each with their respective proba
 
 This means that we’re looking at a regression problem, not a classification problem: we don’t have to determine which classes the galaxies belong to, but rather the fraction of people who would classify them as such.
 
-object of interest is in general in the center
 
 \subsection{Preprocessing}
 
-80/20 partition for training and validation set
-generalization error is measure in test set given by Kaggle
+object of interest is in general in the center
+
+talk about training set partition into training, validation, and tests sets for faster evaluation of the model
 
 how are images loaded (too many to load all of them at once)? We should consider randomly selecting 'x' number of images to train the network using stochastic mini-batch.
 
