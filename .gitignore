@@ -213,6 +213,7 @@ $RECYCLE.BIN/
 /data/images_training_rev1/*
 /data/training/*
 /data/validation/*
+/data/test/*
 /data/training_solutions_rev1.csv
 
 # Ignore papers
