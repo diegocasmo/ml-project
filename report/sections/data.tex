@@ -15,6 +15,8 @@ This means that we’re looking at a regression problem, not a classification pr
 In each image, the object of interest is centered. We can exploit this characteristic by subsampling the image essentially carving off unecessary information in each image which could impair our network in.
 
 image down-sampling (non-destructive cropping to reduce the number of parameters feed to the network)
+	Down sampling helps the CNN to learn which regions are related to each specific expression and also enables the CNN to be performed on the GPU more efficiently.(https://www.davidpublisher.org/Public/uploads/Contribute/58c0b2d33b20b.pdf)
+
 
 talk about training set partition into training, validation, and tests sets for faster evaluation of the model
 
