@@ -21,3 +21,5 @@ Corresponding blog post above.
 
 - [Deep Learning with Keras + TensorFlow](https://www.youtube.com/watch?v=N3oMKS1AfVI&list=PLX-LrBk6h3wR27xylD3Rsx4bbA15jlcYC): this is a nice and simple playlist on how to use keras CNNs
 
+ - [Splitting of data in test and validation ratio](https://www.researchgate.net/publication/228911350_Data_Division_for_Developing_Neural_Networks_Applied_to_Geotechnical_Engineering)
+
