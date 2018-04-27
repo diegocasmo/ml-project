@@ -1,5 +1,7 @@
 \documentclass[a4paper]{article}
+\usepackage{fullpage}
 \usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 
 \usepackage[numbers]{natbib}
 \usepackage{numprint}
@@ -13,6 +15,8 @@
   columns=fullflexible,
   basicstyle=\small
 }
+\usepackage[autostyle]{csquotes} % fixes quote directions
+\MakeOuterQuote{"}
 
 % Custom macro for including images, \mfigure{img-name}{caption}
 \newcommand{\mfigure}[2]{
