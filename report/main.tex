@@ -1,7 +1,10 @@
 \documentclass[a4paper]{article}
+\usepackage{fullpage}
 \usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
+\usepackage{numprint}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{float}
@@ -12,6 +15,8 @@
   columns=fullflexible,
   basicstyle=\small
 }
+\usepackage[autostyle]{csquotes} % fixes quote directions
+\MakeOuterQuote{"}
 
 % Custom macro for including images, \mfigure{img-name}{caption}
 \newcommand{\mfigure}[2]{
@@ -37,6 +42,6 @@
 \input{sections/results.tex}
 % \input{discussion.tex}
 
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{references}
 \end{document}

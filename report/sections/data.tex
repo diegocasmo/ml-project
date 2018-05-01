@@ -1,9 +1,23 @@
 \section{Data}
 
-\subsection{Labels}
+Input images, all of size 424 by 424 pixels.
 
-\subsection{Imbalances}
+There are \numprint{61578} images for training, each with their respective probability distributions for the classifications for each of the training images.
 
-\subsection{Distribution}
+\numprint{79975} images for testing
+
+37 columns are all floating point numbers between $0$ and $1$ inclusive. These represent the morphology (or shape) of the galaxy in 37 different categories as identified by crowd-sourced volunteer classifications as part of the~\texttt{Galaxy Zoo 2} project. These morphologies are related to probabilities for each category; a high number (close to $1$) indicates that many users identified this morphology category for the galaxy with a high level of confidence. Low numbers for a category (close to $0$) indicate the feature is likely not present.
+
+This means that we’re looking at a regression problem, not a classification problem: we don’t have to determine which classes the galaxies belong to, but rather the fraction of people who would classify them as such.
 
 \subsection{Preprocessing}
+
+In each image, the object of interest is centered. We can exploit this characteristic by subsampling the image essentially carving off unecessary information in each image which could impair our network in.
+
+image down-sampling (non-destructive cropping to reduce the number of parameters feed to the network)
+
+Down sampling helps the CNN learn which regions are related to each specific expression and also enables the CNN to be performed on the GPU more efficiently \cite{deep-learning-review}.
+
+talk about training set partition into training, validation, and tests sets for faster evaluation of the model
+
+How are images loaded (too many to load all of them at once)? We should consider randomly selecting 'x' number of images to train the network using stochastic mini-batch.
