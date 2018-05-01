@@ -1,2 +1,24 @@
 \section{Methods and Models}
-Convolutional Neural Networks are not so convoluted as the name might imply.
+
+\subsection{Neural Networks}
+
+\subsection{Convolutional Neural Networks (CNN)}
+
+% What is a CNN?
+% When was this architecture created?
+% TODO: What was it inspired by?
+A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which allows to extract elementary visual features from its input. CNNs were first introduced in~\cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing~\cite{Collobert:2008:UAN:1390156.1390177}, image recognition~\cite{cnn-star-galaxy}, and recommender systems~\cite{NIPS2013_5004}.
+
+% What are convolutional layers?
+% What are filters?
+% What are feature maps?
+% What is a pooling layer?
+% How does a CNN reduce dimensionality?
+The first layers of a CNN are generally composed of convolutional and pooling layers. A convolutional layer parameters is made up of a set of small learnable weights known as filters. Given an image as an input to a convolutional layer, it convolves each filter across the image and produces outputs called feature maps~\cite{cnn-star-galaxy}. The filters, also known as receptive fields, are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners~\cite{Lecun99objectrecognition}. Next, feature maps are usually fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and  its job is to essentially reduce the resolution of the previous feature map. Hence, after a feature maps have been processed by the pooling layers, the next layer of feature maps is going to have less features, thus reducing dimensionality and acting as a regularization technique to avoid overfitting the network.
+
+% TODO: Fully connected layer
+In a typical CNN, two or more of convolutional and pooling layers are stacked together, and finally followed up by a fully-connected layer (FCL).
+
+
+\subparagraph{VGG16 Architecture}
+
