@@ -19,6 +19,8 @@ The first layers of a CNN are generally composed of convolutional and pooling la
 % TODO: Fully connected layer
 In a typical CNN, two or more of convolutional and pooling layers are stacked together, and finally followed up by a fully-connected layer (FCL).
 
-\subparagraph{VGG16 Architecture}
+\subparagraph{VGG-16 Architecture}
+VGG-16 is a pretrained 16 layer convolutional neural network used for image recognition. Built by the visial geometry group at Oxford in \citeyear{vgg16-arxiv} \cite{vgg16-arxiv} because it's pretrained we can build on top of the weights that are already set by the initial and hardware intensive training. The advantage behind this is that we don't have to train the neural network from scratch we can use transfer learning. VGG-16 was trained on 1000 categories of images (classes), we only have 37, by removing the last layer and inserting our own which is of size 37 we can utilize the pre-trained deep structure of VGG-16.
 
-\cite{vgg16-arxiv}
+% There exist other pretrained architectures, why VGG-16 over AlexNet or ImageNet
+
