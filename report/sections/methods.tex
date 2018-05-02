@@ -4,26 +4,32 @@
 % What is deep learning?
 Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features or factors or concepts, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts.It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them\cite{DeepLearning}.
 %Neural networks
-A standard neural network (NN) consists of many simple, connected processors called neurons, each producing a sequence of real-valued activations. Input neurons get activated through sensors(input from us) perceiving the environment, other neurons get activated through weighted connections from previously active neurons. Some neurons may influence the environment by triggering actions.\cite{NeuralNetwork} Learning or credit assignment is about finding weights that make the NN exhibit desired behavior, such as driving a car. Depending on the problem and how the neurons are connected, such behavior may require long chains of computational stages, where each stage transforms (often in a non-linear way) the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages. CNN is one of the neural network we will be using for our problem here. 
+A standard neural network (NN) consists of many simple, connected processors called neurons, each producing a sequence of real-valued activations. Input neurons get activated through sensors(input from us) perceiving the environment, other neurons get activated through weighted connections from previously active neurons. Some neurons may influence the environment by triggering actions.\cite{NeuralNetwork} Learning or credit assignment is about finding weights that make the NN exhibit desired behavior, such as driving a car. Depending on the problem and how the neurons are connected, such behavior may require long chains of computational stages, where each stage transforms (often in a non-linear way) the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages. CNN is one of the neural network we will be using for our problem here.
 
 \subsection{Convolutional Neural Networks (CNN)}
 
 % What is a CNN?
+% What was it inspired by?
 % When was this architecture created?
-% TODO: What was it inspired by?
-A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which allows to extract elementary visual features from its input. CNNs were first introduced in~\cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing~\cite{Collobert:2008:UAN:1390156.1390177}, image recognition~\cite{cnn-star-galaxy}, and recommender systems~\cite{NIPS2013_5004}.
+A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which allows to extract elementary visual features from its input. The creation of CNNs was motivated by Hubel and Wiesel's discovery in~\cite{hubel-wiesel-receptive-fields}, where they were able to find that a cat's visual cortex has locally sensitive, orientation-selective neurons. CNNs were first introduced in~\cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing~\cite{Collobert:2008:UAN:1390156.1390177}, image recognition~\cite{cnn-star-galaxy}, and recommender systems~\cite{NIPS2013_5004}.
 
+% What is a convolution?
+% What are CNNs made of?
 % What are convolutional layers?
 % What are filters?
 % What are feature maps?
+% TODO: Talk about ReLU?
+The first layers of a CNN are generally composed of convolutional and pooling layers. Convolutions are the primary operation of a CNN and what makes them distinct from other type of networks. A convolutional layer parameters is made up of a set of small learnable weights known as filters. A filter has a local receptive field, and given an image as an input to a convolutional layer, it convolves each filter across the image and produces outputs called feature maps~\cite{cnn-star-galaxy}. Filters are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners~\cite{Lecun99objectrecognition}.
+
 % What is a pooling layer?
 % How does a CNN reduce dimensionality?
-The first layers of a CNN are generally composed of convolutional and pooling layers. A convolutional layer parameters is made up of a set of small learnable weights known as filters. Given an image as an input to a convolutional layer, it convolves each filter across the image and produces outputs called feature maps~\cite{cnn-star-galaxy}. The filters, also known as receptive fields, are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners~\cite{Lecun99objectrecognition}. Next, feature maps are usually fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and  its job is to essentially reduce the resolution of the previous feature map. Hence, after a feature maps have been processed by the pooling layers, the next layer of feature maps is going to have less features, thus reducing dimensionality and acting as a regularization technique to avoid overfitting the network.
+Feature maps are then usually fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and  its job is to essentially reduce the resolution of the previous feature map. Hence, after feature maps have been processed by the pooling layers, the next layer of feature maps is going to have less features, and thus it acts as a regularization technique.
 
-% TODO: Fully connected layer
-In a typical CNN, two or more of convolutional and pooling layers are stacked together, and finally followed up by a fully-connected layer (FCL).
+% Why a fully-connected layer?
+Finally, convolutional and pooling layers are followed up by a fully-connected layer (FCL). The FCL size needs to be the same as the number of classes or outputs the network has to learn to identify~\cite{Ciresan11flexible}, and its goal is to simply act as a classification layer which outputs the probability for each output.
 
-\subparagraph{VGG-16 Architecture}
+\subsection{VGG-16 Architecture}
+
 VGG-16 is a pretrained 16 layer convolutional neural network used for image recognition. Built by the visial geometry group at Oxford in \citeyear{vgg16-arxiv} \cite{vgg16-arxiv} because it's pretrained we can build on top of the weights that are already set by the initial and hardware intensive training. The advantage behind this is that we don't have to train the neural network from scratch we can use transfer learning. VGG-16 was trained on 1000 categories of images (classes), we only have 37, by removing the last layer and inserting our own which is of size 37 we can utilize the pre-trained deep structure of VGG-16.
 
 % There exist other pretrained architectures, why VGG-16 over AlexNet, ImageNet, GoogLeNet which outperformed VGG in the competition VGG was introdced.
