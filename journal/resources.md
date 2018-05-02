@@ -15,6 +15,8 @@ Great examples of preprocessing and a successful network architecture. Correspon
 ### VGG-16
 - [Transfer learning using VGG-16 model](https://medium.com/@asheesh12feb/transfer-learning-using-vgg-16-model-2f9b5944b8b2) Medium has such a wealth of software/ml tutorials it's criminal. Just try a search for "Getting started with *X*" to start learning something.
 
+- [Using VGG-16 (and other pretrained models) in Keras](https://www.learnopencv.com/keras-tutorial-using-pre-trained-imagenet-models/) There are some nice code samples here.
+
 - [An Automatic Diagnosis Method of Facial Acne Vulgaris Based on Convolutional Neural Network](https://arxiv.org/abs/1711.04481) A citation for data-augmentation should we need another.
 
 ## Kernels / Repositories
