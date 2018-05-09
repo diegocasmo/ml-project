@@ -30,13 +30,15 @@ Finally, convolutional and pooling layers are followed up by a fully-connected l
 
 \subsection{VGG-16 Architecture}
 
-VGG-16 is a pretrained 16 layer convolutional neural network used for image recognition. Built by the visial geometry group at Oxford in \citeyear{vgg16-arxiv} \cite{vgg16-arxiv} because it's pretrained we can build on top of the weights that are already set by the initial and hardware intensive training. The advantage behind this is that we don't have to train the neural network from scratch we can use transfer learning. VGG-16 was trained on 1000 categories of images (classes), we only have 37, by removing the last layer and inserting our own which is of size 37 we can utilize the pre-trained deep structure of VGG-16.
+\newcommand{\anet}{AlexNet\xspace}
+\newcommand{\gnet}{GoogLeNet\xspace}
+\newcommand{\inet}{ImageNet\xspace}
 
-% There exist other pretrained architectures, why VGG-16 over AlexNet, ImageNet, GoogLeNet which outperformed VGG in the competition VGG was introdced.
+VGG-16 is a pretrained 16 layer convolutional neural network used for image recognition. Built by the visual geometry group at Oxford in \citeyear{vgg16-arxiv} VGG-16 won the got second place to Google in the \inet competition (ILSVRC) in 2014 \cite{vgg16-arxiv}. With the trained model released to the public, we can build on top of the weights that are already set by the initial training phase. The advantage behind this is that we don't have to train the neural network from scratch we can use transfer learning. VGG-16 was trained on 1000 categories of images (classes), we only have 37, by removing the last layer and inserting our own which is of size 37 we can utilize the pre-trained deep structure of VGG-16.
 
-% pooling sizes
-% convolution sizes
-% advantages over AlexNet, and ImageNet
+There exist other pretrained CNN architectures such as \gnet and \anet. \gnet uses average pooling instead of fully connected layers \cite{googlenet-paper} and beat VGG with an error rate of 6.67\% over VGG's 6.8\%. \anet won ILSVRC in 2012 and was novel for stacking multiple convolutional (conv) layers in a row before pooling their results \cite{alexnet-paper}. % so why is VGG advantageous again?
+
+VGG's fully connected nature without any special layers and widgets like \anet or \gnet. % hypothesis
 
 % Architeture changes we have to make
 We need to replace the output layers to fit our vectors.
