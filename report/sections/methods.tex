@@ -2,9 +2,10 @@
 
 \subsection{Deep Learning}
 % What is deep learning?
-Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features or factors or concepts, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts.It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them\cite{DeepLearning}.
+Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features or factors or concepts, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them \cite{DeepLearning}.
+
 %Neural networks
-A standard neural network (NN) consists of many simple, connected processors called neurons, each producing a sequence of real-valued activations. Input neurons get activated through sensors(input from us) perceiving the environment, other neurons get activated through weighted connections from previously active neurons. Some neurons may influence the environment by triggering actions.\cite{NeuralNetwork} Learning or credit assignment is about finding weights that make the NN exhibit desired behavior, such as driving a car. Depending on the problem and how the neurons are connected, such behavior may require long chains of computational stages, where each stage transforms (often in a non-linear way) the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages. CNN (with VGG-16 architecture) is one of the neural network we will be using for our problem here.
+A standard neural network (NN) consists of many simple, connected processors called neurons, each producing a sequence of real-valued activations. Input neurons get activated through sensors (input from us) perceiving the environment, other neurons get activated through weighted connections from previously active neurons. Some neurons may influence the environment by triggering actions.\cite{NeuralNetwork} Learning or credit assignment is about finding weights that make the NN exhibit desired behavior, such as driving a car. Depending on the problem and how the neurons are connected, such behavior may require long chains of computational stages, where each stage transforms (often in a non-linear way) the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages.
 
 \subsection{Convolutional Neural Networks (CNN)}
 
@@ -40,6 +41,6 @@ There exist other pretrained CNN architectures such as \gnet and \anet. \gnet us
 
 VGG's fully connected nature without any special layers and widgets like \anet or \gnet. % hypothesis
 
-% Architeture changes we have to make
+% Architecture changes we have to make
 We need to replace the output layers to fit our vectors.
-We need to change the input layer to accept the new data-size or we crop and downsample to 224 (from 424).
+We need to change the input layer to accept the new data-size or we crop and down-sample to 224 (from 424).
