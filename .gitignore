@@ -205,3 +205,7 @@ $RECYCLE.BIN/
 
 # Ignore papers
 /papers/*
+
+# Ignore personal notes
+TODO.txt
+FEEDBACK.txt
