@@ -203,6 +203,9 @@ $RECYCLE.BIN/
 /data/*
 !/data/README.md
 
+# Ignore tmp data generated from training
+/code/tmp/**
+
 # Ignore papers
 /papers/*
 
