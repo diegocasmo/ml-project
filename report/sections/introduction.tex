@@ -1,8 +1,7 @@
 \section{Introduction}
 
 % Why do we study galaxies?
-
-A galaxy is a system of stars, dust, and matter grouped together by some center of mass. By studying galaxies, astronomers search for answers to questions like "are all galaxies the same size?" and "how and when did galaxies form?" Through the search for these questions we learn about the history of the universe and about the origins of our own galaxy.
+A galaxy is a system of stars, dust, and matter grouped together by some center of mass. By studying galaxies, astronomers search for answers to questions like "are all galaxies the same size?" and "how and when did galaxies form?" Through the search for these questions scientists learn about the history of the universe and about the origins of our own galaxy.
 
 % Why does it need to be automated?
 % Why is machine/deep learning a suitable candidate solution?
@@ -11,8 +10,8 @@ As a consequence, astronomy is one of the main research fields in the big data c
 
 The Sloan Digital Sky Survey (SDSS) has made machine learning methods more viable by releasing large datasets to the public. Since SDSS' inception in 1998 and the first data release in 2000, the group has released over 14 datasets for public use. These enormous datasets have been used for numerous applications of machine learning in the classification of astronomical bodies. For example, \citeauthor{svn-galaxy} in \citeyear{svn-galaxy} used support vector machines, an unsupervised learning method, to classify galaxies and stars. However, they found in the end that they only preformed marginally better than template matching, a traditional image analysis method \cite{svn-galaxy}. Decision trees have also been employed on the star-galaxy classification problem \cite{ball-decision-trees}. Thanks to more available computing resources in this century artificial neural networks have been trained to classify galaxies. Convolutional neural networks (CNNs) have been a popular choice for classifying astronomical images due to their ability to extract features from images which humans might not otherwise select \cite{cnn-star-galaxy}.
 
-In this paper we demonstrate how a convolutional neural network can be constructed to analyze images of galaxies to find automated metrics that reproduce the probability distributions derived from expert human classifications.
+This paper demonstrates how a convolutional neural network can be constructed to analyze images of galaxies to find automated metrics that reproduce the probability distributions derived from expert human classifications.
 
-Our dataset comes from the Dark Energy Camera Legacy Survey (DECaLS), a subset of an SDSS dataset for specifically galaxies called "Galaxy Zoo". DECaLS uses a larger telescope, so it is 10 times more sensitive to light than the survey that supplied images to the first iteration of Galaxy Zoo. This means that we can see more detail \cite{zooniverse}.In 2014 this same dataset was used as the premise for a Kaggle competition.
+Our dataset comes from the Dark Energy Camera Legacy Survey (DECaLS), a subset of an SDSS dataset for specifically galaxies called "Galaxy Zoo". DECaLS uses a larger telescope, so it is 10 times more sensitive to light than the survey that supplied images to the first iteration of Galaxy Zoo. This means there is more detail \cite{zooniverse}. In 2014 this same dataset was used as the premise for a Kaggle competition.
 
 % Finally the economic incentive. By using machine learning for this task we are freeing up the man-hours of dozens if not hundreds of astrophysics PhD students whose sole existence is to categorize galaxies, quasars, and red giants for their thesis advisors. In this manner we follow the footsteps of Bertrand Russel who advocated for shorter working hours in American industrial revolution of the 20th century \cite{russell-idleness}. Today, thanks to the increasing plurality of machine learning tools we are again questioning what is a necessary weekly hourly allocation of work.

@@ -1,18 +1,47 @@
+% Custom macro for including images, \mfigure{img-name}{caption}
 \section{Methods and Models}
+
+\subsection{Neural Network}
+
+% What is a NN?
+% How are they structured?
+A standard neural network (NN) consists of many simple, connected processors called neurons. Each neuron produces a sequence of real-valued activations. A neuron can be activated from an input or another neuron's activation through its weighted connections from a previous layer \cite{NeuralNetwork}.
+
+% Visual explanation of a NN
+Figure \ref{fig:neural-network} shows how a NN receives a number of inputs which are connected to an activation function through weighted edges. A NN can have any number of inputs, hidden layers, or outputs.
+
+\mfigure{neural-network}{A NN which receives the inputs $z_1, z_2, ..., z_I$ and connects them to the neuron through the weighted edges $v_1, v_2, .., v_I$. The input values are multiplied by their respective weights and subtracted from a threshold ($\theta$). The result is passed to an activation function which produces the output \cite{Engelbrecht}.}
+
+% What is an activation?
+% Define ReLU
+An activation function computes a weighted sum of its input, adds a bias and decides whether the neuron's value should be propagated or not. A common choice for an activation function is the Rectified Linear Unit (ReLU) \cite{Relu}. A ReLU is defined as: $\sigma(x) = \max(0, x)$, where $x$ is the weighted sum of the inputs. It returns an output $x$ if $\sigma(x)$ is positive, $0$ otherwise. It has been shown ReLU allow for faster training of NNs with many layers \cite{cnn-star-galaxy}.
+
+\mfigure{relu}{A ReLU function \cite{reluimage}.}
+
+It is possible for ReLU to introduce dead neurons whose output is always zero, this problem is known as the dying ReLU problem. To mitigate this issue, a slightly different version of ReLU known as leaky ReLU can be used. Leaky ReLU is defined in equation \ref{leaky-relu}.
+
+\begin{equation}
+\sigma(x) =
+\begin{cases} \label{leaky-relu}
+    x      , & \text{if } x\geq 0\\
+    0.01x , & \text{otherwise}
+\end{cases}
+\end{equation}
+
+Difference between the actual and predicted output (the error) is computed by loss function. In a NN, a loss function is used to correct weights after a feed forward operation, this process of correction is called back propagation. The error is propagated backwards from the output layer through the hidden layers to the input layer, wherein the weights and biases are modified in such a way that the error for the most recent input is minimized. Over many training samples the loss function will minimize error and the value of the weights for the whole network will begin to converge. The curve which the error rate of the network experiences is controlled through a gradient descent method. This method can help determine whether the network should be trained further or to stop early.
+
+% TODO: more about gradient descent and early stopping, mention local minima
 
 \subsection{Deep Learning}
 % What is deep learning?
-Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features or factors or concepts, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them \cite{DeepLearning}.
-
-%Neural networks
-A standard neural network (NN) consists of many simple, connected processors called neurons, each producing a sequence of real-valued activations. Input neurons get activated through sensors (input from us) perceiving the environment, other neurons get activated through weighted connections from previously active neurons. Some neurons may influence the environment by triggering actions.\cite{NeuralNetwork} Learning or credit assignment is about finding weights that make the NN exhibit desired behavior, such as driving a car. Depending on the problem and how the neurons are connected, such behavior may require long chains of computational stages, where each stage transforms (often in a non-linear way) the aggregate activation of the network. Deep Learning is about accurately assigning credit across many such stages.
+Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them \cite{DeepLearning}. A CNN is a subset of deep learning for doing problems related to computer vision, this is the model which will implemented later for solving the problem.
 
 \subsection{CNNs}
 
 % What is a CNN?
 % What was it inspired by?
 % When was this architecture created?
-A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which allows to extract elementary visual features from its input. The creation of CNNs was motivated by Hubel and Wiesel's discovery in~\cite{hubel-wiesel-receptive-fields}, where they were able to find that a cat's visual cortex has locally sensitive, orientation-selective neurons. CNNs were first introduced in~\cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing~\cite{Collobert:2008:UAN:1390156.1390177}, image recognition~\cite{cnn-star-galaxy}, and recommender systems~\cite{NIPS2013_5004}.
+A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which is able to extract elementary visual features from its input. The creation of CNNs was motivated by Hubel and Wiesel's discovery in~\cite{hubel-wiesel-receptive-fields}, where they were able to find that a cat's visual cortex has locally sensitive, orientation-selective neurons. CNNs were first introduced in \citeyear{Lecun99objectrecognition} \cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing \cite{Collobert:2008:UAN:1390156.1390177}, image recognition \cite{cnn-star-galaxy}, and recommendation systems \cite{NIPS2013_5004}.
 
 % What is the input of CNN?
 % What is a convolution?
@@ -20,7 +49,7 @@ A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which
 % What are convolutional layers?
 % What are filters?
 % What are feature maps?
-A CNN takes an image as an input and feeds it through several layers; usually convolutional layers with rectified linear units (ReLU), pooling layers, and a fully-connected layer (FCL). Convolutions are the primary operation of a CNN and what makes them distinct from other type of networks. A convolutional layer parameters is made up of a set of small learnable weights known as filters. A filter has a local receptive field, and given an image as an input to a convolutional layer, it convolves each filter across the image's width and height using a specified stride size and produces outputs called feature maps~\cite{cnn-star-galaxy}. Filters are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners~\cite{Lecun99objectrecognition}.
+A CNN takes an image as an input and feeds it through several layers; usually convolutional layers with ReLU activation functions, pooling layers, and a fully-connected layer (FCL). Convolutions are the primary operation of a CNN and what makes them distinct from other type of networks. A convolutional layer parameters is made up of a set of small learnable weights known as filters. A filter has a local receptive field, and given an image as an input to a convolutional layer, it convolves each filter across the image's width and height using a specified stride size and produces outputs called feature maps \cite{cnn-star-galaxy}. Filters are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners \cite{Lecun99objectrecognition}.
 
 % Why ReLU as activation functions?
 The filters of a CNN compute linear element-wise multiplication and additions to create the feature maps. In order to add non-linearity, it is common for the convolutional layers to use ReLUs as the activation function which additionally allow for faster training in networks with many layers \cite{cnn-star-galaxy}.
@@ -38,14 +67,66 @@ Once the architecture of a CNN has been specified, its filters and weights are i
 
 \subsection{VGG-16 Architecture}
 
-VGG-16 is a pretrained 16 layer convolutional neural network used for image recognition. Built by the visual geometry group at Oxford in \citeyear{vgg16-arxiv} \cite{vgg16-arxiv} because it's pretrained we can build on top of the weights that are already set by the initial and hardware intensive training. The advantage behind this is that we don't have to train the neural network from scratch we can use transfer learning. VGG-16 was trained on 1000 categories of images (classes), we only have 37, by removing the last layer and inserting our own which is of size 37 we can utilize the pre-trained deep structure of VGG-16.
+\newcommand{\anet}{AlexNet\xspace}
+\newcommand{\gnet}{GoogLeNet\xspace}
+\newcommand{\inet}{ImageNet\xspace}
 
-% There exist other pretrained architectures, why VGG-16 over AlexNet, ImageNet, GoogLeNet which outperformed VGG in the competition VGG was introdced.
+VGG-16 is a pre-trained 16 layer convolutional neural network used for image recognition. Built by the visual geometry group at Oxford in \citeyear{vgg16-arxiv} VGG-16 got second place to Google's \gnet in the Large Scale Visual Recognition Challenge (ILSVRC) 2014 \cite{vgg16-arxiv}. With the trained model released to the public, it is possible to build on top of the weights that are already set by the initial training phase. The advantage behind this is that the model doesn't need to be trained from scratch, this is a form of transfer learning. VGG-16 was trained on 1000 categories of images (classes).
+
+Other pre-trained CNN architectures exist such as \gnet and \anet. \gnet uses average pooling instead of fully connected layers \cite{googlenet-paper} and beat VGG with an error rate of 6.67\% over VGG's 6.8\%. \anet won ILSVRC in 2012 and was novel for stacking multiple convolutional (conv) layers in a row before pooling their results \cite{alexnet-paper}. % so why is VGG advantageous again?
+
+VGG is a clear choice over \gnet and \anet because the weights from the competition are available to the public for use and \anet and \gnet are not as readily available. Furthermore, VGG's fully connected nature without any special layers and widgets like \anet or \gnet make implementation and management much more simple. % hypothesis
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{| c |}
+        \hline
+        Input $224 \times 224$ \\
+        \hline
+        Conv3-64 \\
+        Conv3-64 \\
+        \hline
+        maxpool\\
+        \hline
+        Conv3-128\\
+        Conv3-128\\
+        \hline
+        maxpool\\
+        \hline
+        Conv3-256\\
+        Conv3-256\\
+        \textbf{Conv1-256}\\
+        \hline
+        maxpool\\
+        \hline
+        Conv3-512\\
+        Conv3-512\\
+        \textbf{Conv1-512}\\
+        \hline
+        maxpool \\
+        \hline
+        Conv3-512\\
+        Conv3-512\\
+        \textbf{Conv1-512}\\
+        \hline
+        maxpool\\
+        \hline
+        FC 4096\\
+        \hline
+        FC 4096\\
+        \hline
+        FC 1000\\
+        \hline
+        softmax output\\
+        \hline
+        \end{tabular}
+        \caption{VGG-16 architecture, a line between each item represents a weighted layer of which there are 16. VGG also has 11, 13,and 19 weight layer variants which use fewer convolutional layers.}
+    \end{center}
+\end{table}
 
 % pooling sizes
 % convolution sizes
 % advantages over AlexNet, and ImageNet
 
 % Architecture changes we have to make
-We need to replace the output layers to fit our vectors.
-We need to change the input layer to accept the new data-size or we crop and down-sample to 224 (from 424).
+VGG-16 was trained on 1000 categories of images (classes), the galaxy zoo dataset has an expected output dimensionality of 37, by removing the last layer and inserting a new one with a size of 37 neurons the experiment can take advantage the pre-trained deep structure of VGG-16. Similarly, there need to be changes to the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be replaced with one of size $106 \times 106 \times 3$ (three for each color channel of the image: red, green, blue).
