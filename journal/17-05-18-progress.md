@@ -3,7 +3,7 @@
 ## Objectives from last week:
 
 - Flesh out and refine data and methods section. Particularly in methods, the CNN subsection needs more eyes and work. (partial success)
-- Get a fully trained version of our CNN, get some initial results. (partially complete, getting results, but they're not very good)
+- Get a fully trained version of our CNN, get some initial results. (partially complete, getting results, but they're not very good, we have some hints about why)
 
 ## Accomplishments last week
 
@@ -19,7 +19,7 @@
 ## Next week's objectives:
 
 - Obtain better results
-- Start writing implementation and results sections
+- Write implementation and results sections
 
 ## Long-term plan:
 Demonstrate how a convolutional neural network can be constructed to analyze images of galaxies to find automated metrics that reproduce the probability distributions derived from expert human classifications.
