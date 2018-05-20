@@ -10,7 +10,40 @@ A standard neural network (NN) consists of many simple, connected processors cal
 % Visual explanation of a NN
 Figure \ref{fig:neural-network} shows how a NN receives a number of inputs which are connected to an activation function through weighted edges. A NN can have any number of inputs, hidden layers, or outputs.
 
-\mfigure{neural-network}{A NN which receives the inputs $z_1, z_2, ..., z_I$ and connects them to the neuron through the weighted edges $v_1, v_2, .., v_I$. The input values are multiplied by their respective weights and subtracted from a threshold ($\theta$). The result is passed to an activation function which produces the output \cite{Engelbrecht}.}
+\begin{figure}
+\centering
+\begin{tikzpicture}[
+  mycircle/.style={
+     circle,
+     draw=black,
+     fill=white,
+     inner sep=4pt,
+     minimum size=20pt},
+  mylabel/.style={font=\bf},
+  myarrow/.style={-Stealth},
+  node distance=1.5cm and 2cm
+  ]
+  \node[mylabel] (z1) {$z_1$};
+  \node[mylabel,below=0.75cm of z1] (z2) {$z_2$};
+  \node[mylabel,below=0.25cm of z2] (z3) { };
+  \node[mylabel,below=1cm of z3]    (zn) {$z_I$};
+
+  % neuron and output
+  \node[mycircle, right=of z3] (neuron) {$f(net - \theta)$};
+  \node[mylabel,  right=of neuron] (out) {$o$};
+
+% edges
+\draw [myarrow] (z1) -- node[above] {$v_1$} (neuron);
+\draw [myarrow] (z2) -- node[below] {$v_2$} (neuron);
+\draw [myarrow] (zn) -- node[below] {$v_I$} (neuron);
+
+\draw [myarrow] (neuron) -- node[sloped] {} (out);
+
+\path[] (z2) edge[thick, dash pattern=on \pgflinewidth off 3pt] node[] {} (zn);
+
+\end{tikzpicture}
+\caption{A NN which receives the inputs $z_1, z_2, ..., z_I$ and connects them to the neuron through the weighted edges $v_1, v_2, .., v_I$. The input values are multiplied by their respective weights and subtracted from a threshold ($\theta$). The result is passed to an activation function which produces the output \cite{Engelbrecht}.} \label{neural-network}
+\end{figure}
 
 % What is an activation?
 % Define ReLU
