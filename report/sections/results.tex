@@ -1,9 +1,17 @@
 \section{Results}
 
-"We don't care much about results, except when they're bad." - Ölle
-
+%"We don't care much about results, except when they're bad." - Ölle
 
 % save me I'm useful somewhere
-\begin{equation}\label{rmse}
-RMSE(y,\hat{y}) = \sqrt{\frac{1}{n}  \sum_{i=1}^{n} (y_i - \hat{y}_i)}
-\end{equation}
+% \begin{equation}\label{rmse}
+% RMSE(y,\hat{y}) = \sqrt{\frac{1}{n}  \sum_{i=1}^{n} (y_i - \hat{y}_i)}
+% \end{equation}
+
+Each model was trained for fifty epochs on a 90/10 training/validation split of the full dataset. To better quantify results the dataset was shuffled with the same random seed each time.
+
+\subsection{Benchmarks}
+The Galaxy Zoo Kaggle competition has a test image set of 71,000 images. After training the model the network uses these images to produce predictions. These predictions are saved as a csv file and uploaded to Kaggle. Kaggle then scores the predictions using the root mean square error (RMSE) between the model predictions and what the actual values are (these are kept secret), the lower scores are better. There are certain basic thresholds which can be used to determine if your model is just a random classifier. The first one is an All Zeros benchmark. This is equivalent we would get if we just made a network that always output zeros. Similarly, there is an All Ones benchmark. These two benchmarks represent random classifications which, while not entirely trivial to pass, require some rational architectural choices. The final benchmark is harder, a Central Pixel benchmark, which are the predictions if the inputs were simply the central pixel RGB value in each training image. Very early implementations could pass the all ones benchmark, later fully trained ones pass the central pixel benchmark with ease. From here out we will report our results based on the RMSE score Kaggle gives us.
+
+\subsection{Performance}
+
+We tried a few input configurations
