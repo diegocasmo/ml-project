@@ -2,8 +2,9 @@
 
 % Data pre-processing, CNN setup, training, test, overfitting, data augmentation...
 
-\subsection{Preprocessing}
+\subsection{Data Preprocessing}
 
+All images in the dataset are of size $424\times424$ and the object of interest is always centered. In order to reduce the dimensionality of the images, during the pre-processing images are cropped to $212\times212$, half their original size, images are also down sampled, discarding unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as perform on the GPU more efficiently \cite{deep-learning-review}.
 % data augmentation, cropping & downsampling => dimensionality reduction
 
 \subsection{VGG-16 Architecture}
