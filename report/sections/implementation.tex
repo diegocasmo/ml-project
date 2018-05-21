@@ -71,14 +71,16 @@ VGG is a clear choice over \gnet and \anet because the weights from the competit
 % advantages over AlexNet, and ImageNet
 
 % Architecture changes we have to make
-While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo dataset has an expected output dimensionality of 37. Therefore, several changes had to be made to the network architecture to support the inputs and ouputs of our experiments. The last layer is set to 37 neurons. On the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be one of size $3 \times 106 \times 106$ (three because the images have three color channels: red, green, blue). Another change made for this problem was changing the output layer activation function from softmax to sigmoid. With this new network architecture the pretrained weights from the ILSVRC competition released to the public by VGG were unusable, this meant training from scratch was necessary. Fortunately
+While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo dataset has an expected output dimensionality of 37. Therefore, several changes had to be made to the network architecture to support the inputs and ouputs of our experiments. The last layer is set to 37 neurons. On the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be one of size $3 \times 106 \times 106$ (three because the images have three color channels: red, green, blue). Another change made for this problem was changing the output layer activation function from softmax to sigmoid. With this new network architecture the pretrained weights from the ILSVRC competition released to the public by VGG were unusable, this meant training from scratch was necessary. Fortunately the hardware to do such training was available (see \ref{hard-soft-ware}).
 
 \subsection{Hyperparameters}
 
 % learning rate, activation functions, rprop optimization method, batch sizes.
+We adopted a learning rate of \numprint(0.000001) from the original VGG paper.
+Validation splits 95/5, 90/10, 80/20.
+Batch sizes 16, 24, 32.
 
-\subsection{Software and Hardware}
-For the software implementations there are two readily available and widely used machine learning frameworks Keras and TensorFlow. Keras is a high-level machine learning library written in Python. It can be used with a range of backend drivers which makes it very portable. TensorFlow is the backend driver we used...
+\subsection{Software and Hardware}\label{hard-soft-ware}
+For the software implementations there are two readily available and widely used machine learning frameworks Keras and TensorFlow. Keras is a high-level machine learning library written in Python. It can be used with a range of backend drivers which makes it very portable. TensorFlow is the backend driver we used with Keras which allows access low level hardware for training.
 
-A NVidia GeForce 970 graphics processing unit (gpu) was available, it was used for training each of the models described in results section. GPU's allow for embarrassingly parallel computations and Neural networks can be placed in that domain of being embarrassingly parallel. Using a GPU decreased training time by an order of magnitude.
-
+A NVidia GeForce 970 graphics processing unit (GPU) was available, it was used for training each of the models described in results section. GPU's allow for embarrassingly parallel computations and neural networks can be placed in that domain of being embarrassingly parallel. Using a GPU decreased training time by an order of magnitude over CPU's.
