@@ -1,12 +1,7 @@
 \section{The Dataset}
 
-The "Galaxy Zoo" dataset consists of a total \numprint{141,553} images. These are split into \numprint{61578} images for training --each with their respective probability distributions for the classifications for each of the inputs-- and \numprint{79975} images for testing.
+The "Galaxy Zoo" dataset consists of a total \numprint{141553} images. These are split into \numprint{61578} images for training --each with their respective probability distributions for the classifications for each of the inputs-- and \numprint{79975} images for testing.
 
-As a crowd-sourced volunteer effort, images of the dataset were classified across 37 different categories. Each of the 37 categories has a floating point number between 0 and 1 inclusive. These numbers represent the shape of a galaxy in 37 different categories as identified by the volunteers. These shapes are related to probabilities for each category; a number close to 1 indicates many users identified this category for the galaxy image with a high level of confidence, while numbers close to 0 indicate otherwise.
+As a crowd-sourced volunteer effort, images of the dataset were classified across 11 different categories. Each of categories have attributes which volunteers can rank, there are 37 attributes in total. Some categories are dependent on the presence of others, for example number of spiral arms and spiral tightness is dependent on if the galaxy has spiral shape. The votes on these volunteer categorizations are normalized to a floating point number between 0 and 1 inclusive. A number close to 1 indicates many users identified this category for the galaxy image with a high level of confidence, while numbers close to 0 indicate otherwise. These numbers represent the overall morphology of a galaxy in 37 attributes.
 
-Due to these probabilities being tied to each image this is a regression problem rather than a classification problem. Therefore the task is to determine the fraction of people who would classify a galaxy as having particular qualities or otherwise.
-
-% TODO: Move to implementation section
-\subsection{Data Preprocessing}
-
-All images in the dataset are of size $424\times424$ and the object of interest is centered. As a result, during the pre-processing images are cropped to $212\times212$, half their original size. Additionally, images are also sub-sampled, essentially carving off unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as perform on the GPU more efficiently \cite{deep-learning-review}.
+Due to these probabilities being tied to each image this is a regression problem rather than a classification problem. Therefore, the task is to determine the degree to which a galaxy has certain attributes and mimic how people would classify the same galaxy.
