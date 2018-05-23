@@ -10,7 +10,7 @@ A standard neural network (NN) consists of many simple, connected processors cal
 % Visual explanation of a NN
 Figure \ref{fig:neural-network} shows how a NN receives a number of inputs which are connected to an activation function through weighted edges. A NN can have any number of inputs, hidden layers, or outputs.
 
-\begin{figure}
+\begin{figure} \label{fig:neural-network}
 \centering
 \begin{tikzpicture}[
   mycircle/.style={
@@ -67,7 +67,7 @@ Difference between the actual and predicted output (the error) is computed by lo
 
 \subsection{Deep Learning}
 % What is deep learning?
-Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest through examples (e.g., is this the image of a human face?). Research in this area attempts to define what makes better representations and the best methods for a NN to approach learning them \cite{DeepLearning}. A Convolutional neural network (CNN) is a subset of deep learning for doing problems related to computer vision, this is the model which will implemented later for solving the problem.
+Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest through examples (e.g., is this the image of a human face?). Research in this area attempts to define what makes better representations and the best methods for a NN to approach learning them \cite{DeepLearning}.
 
 \subsection{CNNs}
 
@@ -82,7 +82,11 @@ A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which
 % What are convolutional layers?
 % What are filters?
 % What are feature maps?
-A CNN takes an image as an input and feeds it through several layers; usually convolutional layers with ReLU activation functions, pooling layers, and a fully-connected layer (FCL). Convolutions are the primary operation of a CNN and what makes them distinct from other type of networks. A convolutional layer parameters is made up of a set of small learnable weights known as filters. A filter has a local receptive field, and given an image as an input to a convolutional layer, it convolves each filter across the image's width and height using a specified stride size and produces outputs called feature maps \cite{cnn-star-galaxy}. Filters are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners \cite{Lecun99objectrecognition}.
+A CNN takes an image as an input and feeds it through several layers; usually convolutional layers with ReLU activation functions, pooling layers, and a fully-connected layer (FCL). Convolutions are the primary operation of a CNN and what makes them distinct from other type of networks. A convolutional layer parameters is made up of a set of small learnable weights known as filters. A filter has a local receptive field, and given an image as an input to a convolutional layer, it convolves each filter across the image's width and height using a specified stride size and produces outputs called feature maps \cite{cnn-star-galaxy}. Filters are what allow a CNN to learn to extract visual clues from its input such as edges, lines, and corners \cite{Lecun99objectrecognition}. Equation \ref{cnn:feature-map} from \cite{cnn-star-galaxy} gives the mathematical definition of a feature map $k$. The summation is performed over the set of input feature maps, the symbol $*$ describes the convolution operator, and $\boldsymbol{x}_m$ the filters.
+
+\begin{equation} \label{cnn:feature-map}
+y^k = \sigma{\bigg(\sum_{m} \boldsymbol{w}^{k}_{m} * \boldsymbol{x}_m + b^k \bigg)}
+\end{equation}
 
 % Why ReLU as activation functions?
 The filters of a CNN compute linear element-wise multiplication and additions to create the feature maps. In order to add non-linearity, it is common for the convolutional layers to use ReLUs as the activation function which additionally allow for faster training in networks with many layers \cite{cnn-star-galaxy}.
