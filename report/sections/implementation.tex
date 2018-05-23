@@ -76,9 +76,16 @@ While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo 
 \subsection{Hyperparameters}
 
 % learning rate, activation functions, rprop optimization method, batch sizes.
-We adopted a learning rate of \numprint(0.000001) from the original VGG paper.
-Validation splits 95/5, 90/10, 80/20.
-Batch sizes 16, 24, 32.
+We adopted a learning rate of $10e6$ from the original VGG paper.
+
+Early validation splits were very high of 95/5, this was producing overfit models and was later changed to 80/20.
+
+%Batch sizes 16 and 32.
+Dimensions of the images can be reduced dramatically and still be useful to the network. Two image sizes were tried, $106 \times 106$ and $69 \times 69$ one of these performed better. Different batch sizes were tried too at 16: 16, 32. These batch sizes determine how fast the weights of the network get updated. The smaller the batches get to one the closer the network gets to using simple gradient descent methods. Because our data set and the number of parameters in the network are both large adjusting weights with an extreme frequency could lead to getting stuck in minima or over-adjusting and missing our target function.
+
+Conv layers allow for continuous dimensionality reduction in order to discover and preserve features in the images. Maxpooling layers allow for TODO. Fully connected layers allow for TODO...
+
+Another change from the presented VGG-16 implementation was the output layer activation function. We chose sigmoid over softmax.
 
 \subsection{Software and Hardware}\label{hard-soft-ware}
 For the software implementations there are two readily available and widely used machine learning frameworks Keras and TensorFlow. Keras is a high-level machine learning library written in Python. It can be used with a range of backend drivers which makes it very portable. TensorFlow is the backend driver we used with Keras which allows access low level hardware for training.
