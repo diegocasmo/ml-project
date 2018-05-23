@@ -47,7 +47,7 @@ Figure \ref{fig:neural-network} shows how a NN receives a number of inputs which
 
 % What is an activation?
 % Define ReLU
-An activation function computes a weighted sum of its input, adds a bias and decides whether the neuron's value should be propagated or not. A common choice for an activation function is the Rectified Linear Unit (ReLU) \cite{Relu}. A ReLU is defined as: $\sigma(x) = \max(0, x)$, where $x$ is the weighted sum of the inputs. It returns an output $x$ if $\sigma(x)$ is positive, $0$ otherwise. It has been shown ReLU allow for faster training of NNs with many layers \cite{cnn-star-galaxy}.
+An activation function computes a weighted sum of its input, adds a bias and decides whether the neuron's value should be propagated or not. A common choice for an activation function is the Rectified Linear Unit (ReLU) \cite{Relu}. A ReLU is defined as: $\sigma(x) = \max(0, x)$, where $x$ is the weighted sum of the inputs. It returns an output $x$ if $\sigma(x)$ is positive, $0$ otherwise. NN's using primarily ReLU activation functions have been shown to enable faster training even with many layers \cite{cnn-star-galaxy}.
 
 \mfigure{relu}{A ReLU function \cite{reluimage}.}
 
@@ -67,7 +67,7 @@ Difference between the actual and predicted output (the error) is computed by lo
 
 \subsection{Deep Learning}
 % What is deep learning?
-Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest (e.g., is this the image of a human face?) from examples, and research in this area attempts to define what makes better representations and how to learn them \cite{DeepLearning}. A CNN is a subset of deep learning for doing problems related to computer vision, this is the model which will implemented later for solving the problem.
+Deep learning is a set of algorithms in machine learning that attempt to learn in multiple levels, corresponding to different levels of abstraction. It is based on learning several levels of representations, corresponding to a hierarchy of features, where higher-level concepts are defined from lower-level ones, and the same lower level concepts can help to define many higher-level concepts. It typically uses artificial neural networks. An observation (e.g., an image) can be represented in many ways (e.g., a vector of pixels), but some representations make it easier to learn tasks of interest through examples (e.g., is this the image of a human face?). Research in this area attempts to define what makes better representations and the best methods for a NN to approach learning them \cite{DeepLearning}. A Convolutional neural network (CNN) is a subset of deep learning for doing problems related to computer vision, this is the model which will implemented later for solving the problem.
 
 \subsection{CNNs}
 
