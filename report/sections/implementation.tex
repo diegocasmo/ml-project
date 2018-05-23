@@ -4,7 +4,7 @@
 
 \subsection{Data Preprocessing}
 
-All images in the dataset are of size $424\times424$ and the object of interest is always centered. In order to reduce the dimensionality of the images, during the pre-processing images are cropped to $212\times212$, half their original size, images are also down sampled, discarding unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as perform on the GPU more efficiently \cite{deep-learning-review}.
+All images in the dataset are of size $424\times424$ and the object of interest is always centered. In order to reduce the dimensionality of the images, during pre-processing images are cropped to $212\times212$, half their original size, images are also down sampled to half size again $ 106\times 106$, discarding unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as improve performance when training \cite{deep-learning-review}.
 % data augmentation, cropping & downsampling => dimensionality reduction
 
 \subsection{CNN Architecture - VGG16}
@@ -71,23 +71,23 @@ VGG is a clear choice over \gnet and \anet because the weights from the competit
 % advantages over AlexNet, and ImageNet
 
 % Architecture changes we have to make
-While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo dataset has an expected output dimensionality of 37. Therefore, several changes had to be made to the network architecture to support the inputs and ouputs of our experiments. The last layer is set to 37 neurons. On the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be one of size $3 \times 106 \times 106$ (three because the images have three color channels: red, green, blue). Another change made for this problem was changing the output layer activation function from softmax to sigmoid. With this new network architecture the pretrained weights from the ILSVRC competition released to the public by VGG were unusable, this meant training from scratch was necessary. Fortunately the hardware to do such training was available (see \ref{hard-soft-ware}).
+While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo dataset has an expected output dimensionality of 37. Therefore, several changes had to be made to the network architecture to support the inputs and ouputs of our experiments. The last layer is set to 37 neurons. On the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be one of size $3 \times 106 \times 106$ (three because the images have three color channels: red, green, blue). Another change made for this problem was changing the output layer activation function from softmax to sigmoid. With this new network architecture the pre-trained weights from the ILSVRC competition released to the public by VGG were unusable, this meant training from scratch was necessary. Fortunately the hardware to do such training was available (see \ref{hard-soft-ware}).
 
 \subsection{Hyperparameters}
 
 % learning rate, activation functions, rprop optimization method, batch sizes.
 We adopted a learning rate of $10e6$ from the original VGG paper.
 
-Early validation splits were very high of 95/5, this was producing overfit models and was later changed to 80/20.
+Early validation splits were very high, at 95\% training and 5\% validation (95/5) this split was producing models which were overfit as evidenced by poor performance as well as the training loss on the model becoming --sometimes significantly-- less than the validation loss. Later, this was changed to a more traditional validation split of 80/20.
 
 %Batch sizes 16 and 32.
-Dimensions of the images can be reduced dramatically and still be useful to the network. Two image sizes were tried, $106 \times 106$ and $69 \times 69$ one of these performed better. Different batch sizes were tried too at 16: 16, 32. These batch sizes determine how fast the weights of the network get updated. The smaller the batches get to one the closer the network gets to using simple gradient descent methods. Because our data set and the number of parameters in the network are both large adjusting weights with an extreme frequency could lead to getting stuck in minima or over-adjusting and missing our target function.
+Dimensions of the images can be reduced dramatically and still be useful to the network. Two image sizes were tried, $106 \times 106$ and $69 \times 69$. Different batch sizes were tried too: 16, 32. These batch sizes determine how fast the weights of the network get updated. The smaller the batches get to one the closer the network gets to using simple gradient descent methods. Because our dataset and the number of parameters in the network are both large, adjusting weights with an extreme frequency could lead to getting stuck in minima or over-adjusting and missing our target function.
 
 Conv layers allow for continuous dimensionality reduction in order to discover and preserve features in the images. Maxpooling layers allow for TODO. Fully connected layers allow for TODO...
 
-Another change from the presented VGG-16 implementation was the output layer activation function. We chose sigmoid over softmax.
+Another change from the presented VGG-16 implementation was the output layer activation function. We chose sigmoid over softmax, this was an important change because the softmax function has difficulty predicting hard zeros and ones \cite{kaggle-winner}. Throughout the dataset there are many hard zero values which represent the galaxy not having that attribute at all.
 
 \subsection{Software and Hardware}\label{hard-soft-ware}
 For the software implementations there are two readily available and widely used machine learning frameworks Keras and TensorFlow. Keras is a high-level machine learning library written in Python. It can be used with a range of backend drivers which makes it very portable. TensorFlow is the backend driver we used with Keras which allows access low level hardware for training.
 
-A NVidia GeForce 970 graphics processing unit (GPU) was available, it was used for training each of the models described in results section. GPU's allow for embarrassingly parallel computations and neural networks can be placed in that domain of being embarrassingly parallel. Using a GPU decreased training time by an order of magnitude over CPU's.
+A NVidia GeForce 970 graphics processing unit (GPU) was available, it was used for training each of the models described in results section. GPU's allow for embarrassingly parallel computations and neural networks can be placed in that domain of being embarrassingly parallel. Using a GPU decreased training time by an order of magnitude over traditional CPU's.
