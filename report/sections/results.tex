@@ -15,3 +15,17 @@ The Galaxy Zoo Kaggle competition has a test image set of \numprint{79975} image
 \subsection{Performance}
 
 A few input configurations were tried.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|r|c|c|}
+        \hline
+                      & $69 \times 69$ & $106 \times 106$ \\ \hline
+        Batches of 16 & 0.11538 & 0.11062 \\ \hline
+        Batches of 32 & 0.11476 & 0.11288 \\ \hline
+    \end{tabular}
+    \caption{Spread of results for various input and batch sizes. In the Kaggle competition this would put us in 78, 88, 94, 95 place respectively.}
+    \label{tab:results1}
+\end{table}
+
+Loss graphs from image sizes of 69 suggest that the model is overfit.
