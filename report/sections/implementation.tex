@@ -4,8 +4,11 @@
 
 \subsection{Data Preprocessing}
 
-All images in the dataset are of size $424\times424$ and the object of interest is always centered. In order to reduce the dimensionality of the images, during pre-processing images are cropped to $212\times212$, half their original size, images are also down sampled to half size again $ 106\times 106$, discarding unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as improve performance when training \cite{deep-learning-review}.
+All images in the dataset are of size $424\times424$ and the object of interest is always centered. In order to reduce the dimensionality of the images, during preprocessing images are cropped to $212\times212$, half their original size, images are also down sampled to half size again $ 106\times 106$, discarding unnecessary information in each image which could impair the network. Down sampling can help the CNN learn which regions are related to each specific expression as well as improve performance when training \cite{deep-learning-review}.
 % data augmentation, cropping & downsampling => dimensionality reduction
+
+\subsubsection{Data Augmentation}
+While there were a sufficient count images to train on, it is possible to increase the performance of the network by augmenting the training data. wanted to improve the performance of the network even more therefore returns to date augmentation to try and improve the network overall. Therefore, in some runs of the network, a random transformation was applied to the training images. This transformation could be any combination of rotation by 90 degree increments or a flip on the horizontal or vertical axes, or no transformation at all (1 in 4 that there is no rotation, and 1 in four that there is no rotation at all). This brings 16 possible configurations for each image. Trained over 50 epochs there is a good likelihood that the network will see every configuration of any given image.
 
 \subsection{CNN Architecture - VGG16}
 
@@ -73,10 +76,13 @@ VGG is a clear choice over \gnet and \anet because the weights from the competit
 % Architecture changes we have to make
 While VGG-16 was trained on 1000 categories of images (classes), the Galaxy Zoo dataset has an expected output dimensionality of 37. Therefore, several changes had to be made to the network architecture to support the inputs and ouputs of our experiments. The last layer is set to 37 neurons. On the input layer of VGG-16, because the preprocessing methods crop and down-sample from $424 \times 424$ pixels to $106 \times 106$ pixels the input layer needs to be one of size $3 \times 106 \times 106$ (three because the images have three color channels: red, green, blue). Another change made for this problem was changing the output layer activation function from softmax to sigmoid. With this new network architecture the pre-trained weights from the ILSVRC competition released to the public by VGG were unusable, this meant training from scratch was necessary. Fortunately the hardware to do such training was available (see \ref{hard-soft-ware}).
 
+\subsection{Dropout}
+Dropout is a method to prevent neural networks from overfitting \cite{dropout}. It does this by randomly deactivating some neurons in one or many layers. This makes the remaining active neurons compensate their weights twice as much in the back-propagation phase. Neurons are randomly activated and deactivated per update, here each time a batch has been fully fed through the network. By activating and deactivating neurons in layers, dropout keeps the neurons of a network robust to the training data by never letting them fully fit to the training data. In \cite{dropout} the authors recommend to keep dropout ratio between 0.5 and 1. In the implementation of VGG-16 we stuck with the 50\% dropout rate which the original implementors chose.
+
 \subsection{Hyperparameters}
 
 % learning rate, activation functions, rprop optimization method, batch sizes.
-We adopted a learning rate of $10e6$ from the original VGG paper.
+We adopted a learning rate of $10e-6$ from the original VGG paper.
 
 Early validation splits were very high, at 95\% training and 5\% validation (95/5) this split was producing models which were overfit as evidenced by poor performance as well as the training loss on the model becoming --sometimes significantly-- less than the validation loss. Later, this was changed to a more traditional validation split of 80/20.
 
