@@ -28,7 +28,7 @@ Before immediately attempting data-augmentation methods, a few hyperparameter co
     \label{tab:results1}
 \end{table}
 
-Loss graphs from image sizes of 69 (figure \ref{32b-69})suggest that the model is overfit.
+Results for the images were $69 \times 69$ and where the batch size was 32 or 16 the loss graph and validation loss exhibited traits of overfitting. The results from Kaggle may in fact back this up, as the score gets better the larger the batch size, although two points don't necessarily make a trend. It could be that larger batch sizes may be necessary when the images are smaller.
 
 \pngfigure{32b-69}{The training loss line being lower than the validation loss line characteristic of overfitting.}
 
@@ -39,6 +39,7 @@ Loss graphs from image sizes of 69 (figure \ref{32b-69})suggest that the model i
 In digital imagery pixels are stored as combinations of three values red, green, and blue (RGB). However, there are many more ways to represent color; in printing for example: cyan, magenta, black (CMYK) are optimal values because of how light reflects on printed surfaces. Hue, saturation, lightness (HSL) is a different color space where the luminosity of an image is converted to a lightness value. There were hypothesis if converting the galaxy images to this color format might enhance responses in the network, stars being bright, the star pixels will emit a high $L$ value and thus create stronger weights. Here are the results, here's why it (probably did not I've tried HSV) work.
 
 \subsection{Data Augmentation}
+After the examining the results on 32 and 16 batches we decided to move forward with applying data augmentation to image sizes of $106 \times 106$.
 
 \begin{table}[]
     \centering
