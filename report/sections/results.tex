@@ -28,27 +28,34 @@ Before immediately attempting data-augmentation methods, a few hyperparameter co
     \label{tab:results1}
 \end{table}
 
-Results for the images were $69 \times 69$ and where the batch size was 32 or 16 the loss graph and validation loss exhibited traits of overfitting. The results from Kaggle may in fact back this up, as the score gets better the larger the batch size, although two points don't necessarily make a trend. It could be that larger batch sizes may be necessary when the images are smaller.
+Results for the images were $69 \times 69$ and where the batch size was 32 or 16 the loss graph and validation loss exhibited traits of overfitting (figure \ref{32b-69}). The results from Kaggle may in fact back this up, as the score gets better the larger the batch size, although two points don't necessarily make a trend. It could be that larger batch sizes may be necessary when the images are smaller.
 
 \pngfigure{32b-69}{The training loss line being lower than the validation loss line characteristic of overfitting.}
 
 \pngfigure{32b-106-90-10}{A run with a 90/10 training-validation split, the score from this run was admissible but ultimately beat by 80/20 splits.}
 
+% This figure feels a little redundant
+\pngfigure{32b-106-80-20}{A run with 80/20 training-validation split. Notice the smoother curve versus a run with the same parameters but a 90/10 split.}
+
 \subsection{HSV Input format}
 
-In digital imagery pixels are stored as combinations of three values red, green, and blue (RGB). However, there are many more ways to represent color; in printing for example: cyan, magenta, black (CMYK) are optimal values because of how light reflects on printed surfaces. Hue, saturation, lightness (HSL) is a different color space where the luminosity of an image is converted to a lightness value. There were hypothesis if converting the galaxy images to this color format might enhance responses in the network, stars being bright, the star pixels will emit a high $L$ value and thus create stronger weights. Here are the results, here's why it (probably did not I've tried HSV) work.
+In digital imagery pixels are stored as combinations of three values red, green, and blue (RGB). However, there are many more ways to represent color; in printing for example: cyan, magenta, black (CMYK) are optimal values because of how light reflects on printed surfaces. Hue, saturation, value (HSV) is a different color space where the color is stored in hue, color intensity is stored in saturation, and the brightness is stored in a value. There were hypothesis if converting the galaxy images to this color format might enhance responses in the network, stars being bright, the star pixels will emit a high $V$ value and thus create stronger weights.
+
+The results from this color space conversion were not terrific. Run with a batch of 32 with images $106 \times 106$ we got a score of $0.13778$ worse than any RGB result. The score was worse probably due to a number of issues. While $V$ may have been regularly high for the features we're trying to detect, $H$ may have been too varied for the network to converge on. For $S$, the color intensity of images were not very large, and so most colors were close to zero on the saturation scale. The combination of a rapidly fluctuating variable $H$, a regularly small value of $S$ made $V$ comparatively worthless in the network.
 
 \subsection{Data Augmentation}
 After the examining the results on 32 and 16 batches we decided to move forward with applying data augmentation to image sizes of $106 \times 106$.
 
 \begin{table}[]
     \centering
-    \begin{tabular}{|r|c||}
+    \begin{tabular}{|r|c|}
         \hline
                       & $106 \times 106$ \\ \hline
-        Batches of 16 &  TODO \\ \hline
-        Batches of 32 &  TODO \\ \hline
+        Batches of 16 &  0.11331 \\ \hline
+        Batches of 32 &  0.11673 \\ \hline
     \end{tabular}
-    \caption{Spread of results for various batch sizes with data augmentation, this reinforces a hypothesis that smaller batch sizes for the $106 \times 106$ image sizes is more optimal. In the Kaggle competition...}
+    \caption{Spread of results for various batch sizes with data augmentation. Augmentation was a random combination of reflection on the horizontal or vertical axis and being rotated by 90 degree increments. }
     \label{tab:results2}
 \end{table}
+
+This reinforces a forming hypothesis that smaller batch sizes for the $106 \times 106$ image sizes are more optimal.
