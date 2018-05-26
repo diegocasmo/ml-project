@@ -49,6 +49,7 @@ Figure \ref{fig:neural-network} shows how a NN receives a number of inputs which
 An activation function computes a weighted sum of its input, adds a bias and decides whether the neuron's value should be propagated or not. A common choice for an activation function is the Rectified Linear Unit (ReLU) \cite{Relu}. A ReLU is defined as: $\sigma(x) = \max(0, x)$, where $x$ is the weighted sum of the inputs. It returns an output $x$ if $\sigma(x)$ is positive, $0$ otherwise. NN's using primarily ReLU activation functions have been shown to enable faster training even with many layers \cite{cnn-star-galaxy}.
 
 \begin{figure}\label{fig:relu}
+\centering
 \begin{tikzpicture}[y=.4cm, x=0.4cm]
   %axes
   \draw [<->] (-10,0) -- coordinate (x axis mid) (10,0);
