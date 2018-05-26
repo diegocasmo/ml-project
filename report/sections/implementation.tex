@@ -25,12 +25,12 @@ VGG-16 is a 16 weight-layer convolutional neural network used for image recognit
 Other pre-trained CNN architectures exist such as \gnet and \anet. \gnet uses average pooling instead of fully connected layers \cite{googlenet-paper} and beat VGG with an error rate of 6.67\% over VGG's 6.8\%. \anet won ILSVRC in 2012 and was novel for stacking multiple convolutional (conv) layers in a row before pooling their results \cite{alexnet-paper}. % so why is VGG advantageous again?
 
 % pooling sizes, ponvolution sizes
-
+Table \ref{vgg-table} lays out the full VGG-16 architecture. VGG also made 11, 13,and 19 weight-layer variants which use different counts and sizes of conv layers. For the variant implemented here, all conv layers are of size \isize{3} and have a stride of one. The second number after "conv3" in table \ref{vgg-table} represents the number of image channels, which increase as the architecture gets deeper and the image input more filtered.
 
 % advantages over AlexNet, and ImageNet
 VGG is a good choice over \gnet and \anet because the weights from the competition are available to the public for use and \anet and \gnet are not as readily available. Furthermore, VGG's fully connected nature without any special layers and widgets like \anet or \gnet make implementation and management much more simple. % hypothesis
 
-\end{wraptable}
+\begin{wraptable}{r}
     \begin{center}
         \begin{tabular}{| c |}
         \hline
@@ -73,7 +73,8 @@ VGG is a good choice over \gnet and \anet because the weights from the competiti
         soft-max output\\
         \hline
         \end{tabular}
-        \caption{VGG-16 architecture, a line between each item represents a weighted layer of which there are 16. VGG also made 11, 13,and 19 weight-layer variants which use different counts of convolutional layers \cite{vgg16-arxiv}.}
+        \caption{VGG-16 architecture \cite{vgg16-arxiv}.}
+        \label{vgg-table}
     \end{center}
 \end{wraptable}
 
