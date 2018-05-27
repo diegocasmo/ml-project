@@ -5,14 +5,16 @@
 
 \usepackage[numbers]{natbib}
 \usepackage{amsmath}
-\usepackage{numprint}
-\usepackage{graphicx}
-\usepackage{titlesec}
-\usepackage{tikz} \usetikzlibrary{trees, positioning, arrows.meta}
 \usepackage{float}
+\usepackage{graphicx}
 \usepackage{listings}
-\usepackage{xspace}
+\usepackage{numprint}
+\usepackage{tikz} \usetikzlibrary{trees, positioning, arrows.meta}
+\usepackage{titlesec}
 \usepackage{url}
+\usepackage{wrapfig}
+\usepackage{xspace}
+
 \lstset{% parameters for all code listings
   language=Python,
   frame=single,
@@ -28,10 +30,19 @@
 \counterwithin{equation}{section}
 
 % Custom macro for including images, \mfigure{img-name}{caption}
-\newcommand{\mfigure}[2]{
+\newcommand{\jpgfigure}[2]{
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.30\textheight,keepaspectratio]{figures/#1.jpg}
+    \caption{#2}
+    \label{fig:#1}
+\end{figure}
+}
+
+\newcommand{\pngfigure}[2]{
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.30\textheight,keepaspectratio]{figures/#1.png}
     \caption{#2}
     \label{fig:#1}
 \end{figure}
