@@ -8,9 +8,9 @@ All images in the dataset are of size $424\times424$ and the object of interest 
 % data augmentation, cropping & downsampling => dimensionality reduction
 
 \subsubsection{Data Augmentation}\label{aug}
-While there are a sufficient count images to train on, it is possible to increase the performance of the network by augmenting the training data. Because the galaxies are rotationally invariant this dataset is an ideal candidate for applying data augmentation to. Therefore, a random transformation was performed online to different images across epochs. This transformation could be any combination of rotation by 90 degree increments or a flip on the horizontal or vertical axes, or no transformation at all (1 in 4 that there is no rotation, and 1 in four that there is no rotation at all). This brings 16 possible configurations for each image. Trained over 50 epochs there is a good likelihood that the network will see every configuration of any given image.
+While there are a sufficient count images to train on, it is possible to increase the performance of the network by augmenting the training data. Because the galaxies are rotationally invariant this dataset is an ideal candidate for applying data augmentation to. Therefore, a random transformation was performed online to different images across epochs. This transformation could be any combination of rotation by 90 degree increments or a flip on the horizontal or vertical axes, or no transformation at all (one in four chance that there is no rotation at all). This brings 16 possible configurations for each image. Trained over 50 epochs there is a good likelihood that the network will see every configuration of any given image.
 
-Augmenting with these transformations effectively increases our training data set to \numprint{985248}, we will augment the validation set as we need it as a baseline to validate against.
+Augmenting with these transformations effectively increases our training data set by a great amount. In an 80/20 split there will be \numprint{49262} training images, when this is augmented there will be effectively \numprint{788198} images. The validation dataset is not augmented as it is needed as is for a baseline.
 
 \subsection{CNN Architecture - VGG16}
 
@@ -20,7 +20,7 @@ Augmenting with these transformations effectively increases our training data se
 
 \newcommand{\isize}[1]{$#1 \times #1$}
 
-VGG-16 is a 16 weight-layer convolutional neural network used for image recognition. Created by the visual geometry group at Oxford in \citeyear{vgg16-arxiv} VGG-16 got second place to Google's \gnet in the Large Scale Visual Recognition Challenge (ILSVRC) 2014 \cite{vgg16-arxiv}. With the trained model released to the public, it is possible to build on top of the weights that are already set by the initial training phase. The advantage behind this is that the model doesn't need to be trained from scratch, this is a form of transfer learning. VGG-16 was trained on 1000 categories of images (classes).
+VGG-16 is a 16 weight-layer convolutional neural network used for image recognition. Created by the visual geometry group at Oxford in \citeyear{vgg16-arxiv} VGG-16 got second place to Google's \gnet in the Large Scale Visual Recognition Challenge (ILSVRC) 2014 \cite{vgg16-arxiv}. With the trained model released to the public, it is possible to build on top of the weights that are already set by the initial training phase. The advantage behind this is that the model doesn't need to be trained from scratch, this is a form of transfer learning.
 
 Other pre-trained CNN architectures exist such as \gnet and \anet. \gnet uses average pooling instead of fully connected layers \cite{googlenet-paper} and beat VGG with an error rate of 6.67\% over VGG's 6.8\%. \anet won ILSVRC in 2012 and was novel for stacking multiple convolutional (conv) layers in a row before pooling their results \cite{alexnet-paper}. % so why is VGG advantageous again?
 
@@ -72,7 +72,7 @@ Other pre-trained CNN architectures exist such as \gnet and \anet. \gnet uses av
 \end{wraptable}
 
 % pooling sizes, ponvolution sizes
-Table \ref{vgg-table} lays out the full VGG-16 architecture. VGG also made 11, 13,and 19 weight-layer variants which use different counts and sizes of conv layers. For the variant implemented here, all conv layers are of size \isize{3} and have a stride of one. The second number after "conv3" in table \ref{vgg-table} represents the number of image channels, which increase as the architecture gets deeper and the image input more filtered.
+Table \ref{vgg-table} lays out the full VGG-16 architecture. VGG also made 11, 13, and 19 weight-layer variants which use different counts and sizes of conv layers. For the variant implemented here, all conv layers are of size \isize{3} and have a stride of one. The second number after "conv3" in table \ref{vgg-table} represents the number of image channels, which increase as the architecture gets deeper and the image input more filtered.
 
 % advantages over AlexNet, and ImageNet
 VGG is a good choice over \gnet and \anet because the weights from the competition are available to the public for use and \anet and \gnet are not as readily available. Furthermore, VGG's fully connected nature without any special layers and widgets like \anet or \gnet make implementation and management much more simple. % hypothesis

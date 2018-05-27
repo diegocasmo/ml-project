@@ -44,7 +44,7 @@ In digital imagery pixels are stored as combinations of three values red, green,
 The results from this color space conversion were not terrific. With a batch of 32 with images the image size of \isize{106} got a score of $0.13778$ worse than any RGB result. The score was worse due to two issues over which there was much rumination. While $V$ may have been regularly high for the features we're trying to detect, $H$ may have been too varied for the network to converge on. For $S$, the color intensity of images was not very high, and so most colors were close to zero on the saturation scale. The combination of a rapidly fluctuating variable $H$, a regularly small value of $S$ made $V$ comparatively worthless to the network. This score would have earned 178th in the Kaggle competition.
 
 \subsection{Data Augmentation}
-After the examining the results on 32 and 16 batches we decided to move forward with applying data augmentation to image sizes of \isize{106}.
+After the examining the results on 32 and 16 batches it was decided to move forward with applying data augmentation to image sizes of \isize{106}.
 
 \begin{table}[]
     \centering
