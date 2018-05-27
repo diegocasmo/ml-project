@@ -10,8 +10,6 @@ All images in the dataset are of size $424\times424$ and the object of interest 
 \subsubsection{Data Augmentation}\label{aug}
 While there are a sufficient count images to train on, it is possible to increase the performance of the network by augmenting the training data. Because the galaxies are rotationally invariant this dataset is an ideal candidate for applying data augmentation to. Therefore, a random transformation was performed online to different images across epochs. This transformation could be any combination of rotation by 90 degree increments or a flip on the horizontal or vertical axes, or no transformation at all (one in four chance that there is no rotation at all). This brings 16 possible configurations for each image. Trained over 50 epochs there is a good likelihood that the network will see every configuration of any given image.
 
-Augmenting with these transformations effectively increases our training data set by a great amount. In an 80/20 split there will be \numprint{49262} training images, when this is augmented there will be effectively \numprint{788198} images. The validation dataset is not augmented as it is needed as is for a baseline.
-
 \subsection{CNN Architecture - VGG16}
 
 \newcommand{\anet}{AlexNet\xspace}
