@@ -28,14 +28,16 @@ Before immediately attempting data-augmentation methods, a few hyperparameter co
     \label{tab:results1}
 \end{table}
 
-Results for the images were \isize{69} and where the batch size was 32 or 16 the loss graph and validation loss exhibited traits of overfitting (figure \ref{fig:32b-69}). The results from Kaggle may in fact back this up, as the score gets better the larger the batch size, although two points don't necessarily make a trend. It could be that larger batch sizes may be necessary when the images are smaller.
+Results where image size was \isize{69} and where the batch size was 32 or 16 the loss graph and validation loss exhibited traits of overfitting (figure \ref{fig:32b-69}). The results from Kaggle may, in fact, back this up, as the score gets better the larger the batch size, although two points don't necessarily make a trend. It could also be that larger batch sizes may be necessary when the images (input sizes) are smaller.
 
 \pngfigure{32b-69}{The training loss line being lower than the validation loss line characteristic of overfitting.}
 
-\pngfigure{32b-106-90-10}{A run with a 90/10 training-validation split, the score from this run was admissible but ultimately beat by 80/20 splits.}
+\pngfigure{32b-106-90-10}{A run with a 90/10 training-validation split, the score from this run was admissible but ultimately beat by 80/20 splits. The Kaggle score from this run was $0.13070$.}
 
 % This figure feels a little redundant
 \pngfigure{32b-106-80-20}{A run with 80/20 training-validation split. Notice the smoother curve versus a run with the same parameters but a 90/10 split.}
+
+Results for the larger images are more in line with expectations. Interestingly, the smaller batches of 16 worked better than 32. This may be surprising compared to the original VGG-16 implementation where input sizes were \isize{224} and their batch was 256. The low learning rate is potentially the parameter solving this. Again the ImageNet dataset is roughly an order of magnitude larger than what we have now, in this aspect the chosen architecture may be overkill and a smaller VGG variant should have been tried out first.
 
 \subsection{HSV Input format}
 
@@ -59,3 +61,24 @@ After the examining the results on 32 and 16 batches it was decided to move forw
 \end{table}
 
 This reinforces a forming hypothesis that smaller batch sizes for the \isize{106} image sizes are more optimal. These scores would have earned 91st and 97th respectively. There may be too much augmentation going on and not enough hyperparameter adjustment. There are almost a three quarters of a million images with these transformations, it might have been best to perform some learning rate studies; as is, the network might not have taken the large strides it needed to attain better score than the un-augmented datasets.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|l|c|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{All results, sorted best to worst}} \\ \hline
+        \textbf{\textit{image size}}, \textbf{\textit{batch size}} & \textbf{Score} \\ \hline
+
+        \isize{106}, 16 & 0.11062 \\ \hline
+        \isize{106}, 32 & 0.11288 \\ \hline
+        \isize{106}, 16, augmented   & 0.11331 \\ \hline
+        \isize{69}, 32 & 0.11476 \\ \hline
+        \isize{69}, 16 & 0.11538 \\ \hline
+        \isize{106}, 32, augmented   & 0.11673 \\ \hline
+        \isize{106}, 32, 90/10 split & 0.13070 \\ \hline
+        \isize{106}, 32, HSV format  & 0.13778 \\ \hline
+
+    \end{tabular}
+    \caption{All results sorted by Kaggle score. Runs are using 80/20 split unless specified otherwise.}
+    \label{tab:all_results}
+\end{table}
