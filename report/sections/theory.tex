@@ -94,7 +94,7 @@ Deep learning is a set of algorithms in machine learning that attempt to learn i
 % What is a CNN?
 % What was it inspired by?
 % When was this architecture created?
-A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which is able to extract elementary visual features from its input. The creation of CNNs was motivated by Hubel and Wiesel's discovery in~\cite{hubel-wiesel-receptive-fields}, where they were able to find that a cat's visual cortex has locally sensitive, orientation-selective neurons. CNNs were first introduced in \citeyear{Lecun99objectrecognition} \cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in  natural language processing \cite{Collobert:2008:UAN:1390156.1390177}, image recognition \cite{cnn-star-galaxy}, and recommendation systems \cite{NIPS2013_5004}.
+A CNN is a type of deep feed-forward neural network~\cite{cnn-star-galaxy} which is able to extract elementary visual features from its input. The creation of CNNs was motivated by Hubel and Wiesel's discovery in~\cite{hubel-wiesel-receptive-fields}, where they were able to find that a cat's visual cortex has locally sensitive, orientation-selective neurons. CNNs were first introduced in \citeyear{Lecun99objectrecognition} \cite{Lecun99objectrecognition}, and since then have been applied to solve numerous different type of problems in natural language processing \cite{Collobert:2008:UAN:1390156.1390177}, image recognition \cite{cnn-star-galaxy}, and recommendation systems \cite{NIPS2013_5004}.
 
 % What is the input of CNN?
 % What is a convolution?
@@ -114,7 +114,7 @@ The filters of a CNN compute linear element-wise multiplication and additions to
 % What is a pooling layer?
 % How does a pooling layer work?
 % How does a CNN reduce dimensionality?
-Feature maps are then fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and  its job is to essentially reduce the resolution of the previous feature map. A pooling layer performs an operation such as selecting the maximum value within its range, thus acting as a regularization technique to avoid overfitting.
+Feature maps are then fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and its job is to essentially reduce the resolution of the previous feature map. A pooling layer performs an operation such as selecting the maximum value within its range, thus acting as a regularization technique to avoid overfitting.
 
 % Why a fully-connected layer?
 Finally, convolutional and pooling layers are followed up by a FCL. The FCL size needs to be the same as the number of classes or outputs the network has to learn to identify~\cite{Ciresan11flexible}, and its goal is to simply act as a classification layer which outputs the probability for each class.
