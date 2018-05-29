@@ -81,7 +81,7 @@ It is possible for ReLU to introduce dead neurons whose output is always zero, t
 \end{cases}
 \end{equation}
 
-Difference between the actual and predicted output (the error) is computed by loss function. In a NN, a loss function is used to correct weights after a feed forward operation, this process of correction is called back propagation. The error is propagated backwards from the output layer through the hidden layers to the input layer, wherein the weights and biases are modified in such a way that the error for the most recent input is minimized. Over many training samples the loss function will minimize error and the value of the weights for the whole network will begin to converge. The curve which the error rate of the network experiences is controlled through a gradient descent method. This method can help determine whether the network should be trained further or to stop early.
+A loss function defines the difference between the target and actual output\cite{Engelbrecht}. A NN uses the loss function to correct weights after a feed forward operation, this process of correction is called back propagation. The error is propagated backwards from the output layer through the hidden layers to the input layer, wherein the weights and biases are modified in such a way that the error for the most recent input is minimized. Over many training samples the loss function will minimize error and the value of the weights for the whole network will begin to converge. The curve which the error rate of the network experiences is controlled through a gradient descent method. This method can help determine whether the network should be trained further or to stop early.
 
 % TODO: more about gradient descent and early stopping, mention local minima
 
