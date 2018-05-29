@@ -114,7 +114,7 @@ The filters of a CNN compute linear element-wise multiplication and additions to
 % What is a pooling layer?
 % How does a pooling layer work?
 % How does a CNN reduce dimensionality?
-Feature maps are then fed through pooling layers. A pooling layer is typically of size~$2 \times 2$~\cite{NIPS2012_4824}, and its job is to essentially reduce the resolution of the previous feature map. A pooling layer performs an operation such as selecting the maximum value within its range, thus acting as a regularization technique to avoid overfitting.
+Feature maps are then fed through pooling layers. A pooling layer is typically of size \isize{2} \cite{alexnet-paper}, and its job is to essentially reduce the resolution of the previous feature map. A pooling layer performs an operation such as selecting the maximum value within its range, thus acting as a regularization technique to avoid overfitting.
 
 % Why a fully-connected layer?
 Finally, convolutional and pooling layers are followed up by a FCL. The FCL size needs to be the same as the number of classes or outputs the network has to learn to identify~\cite{Ciresan11flexible}, and its goal is to simply act as a classification layer which outputs the probability for each class.
