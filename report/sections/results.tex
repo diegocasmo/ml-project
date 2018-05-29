@@ -2,15 +2,10 @@
 
 %"We don't care much about results, except when they're bad." - Ölle
 
-% save me I'm useful somewhere
-% \begin{equation}\label{rmse}
-% RMSE(y,\hat{y}) = \sqrt{\frac{1}{n}  \sum_{i=1}^{n} (y_i - \hat{y}_i)}
-% \end{equation}
-
-Each model was trained for at most fifty epochs on the full training dataset. Early runs were trained with a 90/10 training-validation split, there did not seem to be much room for improvement based on the separation between the validation and training loss. Thus, an 80/20 split was settled on, results were much better. Early stopping would be invoked if validation loss did not improve for five epochs. To make sure the results could be equally quantified the dataset was shuffled with the same random seed each time.
+Each model was trained for at most fifty epochs on the full training dataset. Early runs were trained with a 90/10 training-validation split, there didn't seem to be much room for improvement based on the separation between the validation and training loss. Thus, an 80/20 split was settled on, results were much better. Early stopping would be invoked if validation loss did not improve for five epochs. To make sure the results could be equally quantified the dataset was shuffled with the same random seed each time.
 
 \subsection{Benchmarks}\label{benchmarks}
-The Galaxy Zoo Kaggle competition has a test image set of \numprint{79975} images. After training the model the network uses these images to produce predictions. These predictions are saved as a CSV file and uploaded to Kaggle. Kaggle then scores the predictions using the root mean square error (RMSE) between the model predictions and what the actual values are (these actual values for the test set are kept secret), the lower scores are better. There are certain basic thresholds which can be used to determine if the model behaves as a random classifier or worse. The first is an All Zeros benchmark, this is equivalent to a network that always outputs zeros for all attributes. Similarly, there is an All Ones benchmark; these two benchmarks represent random classifications which, while not entirely trivial to pass, require some rational architectural choices. The final benchmark is harder, a Central Pixel benchmark, which are the predictions if the outputs were simply the central pixel RGB value in each training image. Very early implementations of the VGG16 model could pass the All Zero benchmark, later--with the right hyper-parameters-- the model could pass the All Ones and Central Pixel benchmarks. Results through the rest of this paper are based on the RMSE score Kaggle given for a particular model.
+The Galaxy Zoo Kaggle competition has a test image set of \numprint{79975} images. After training the model the network uses these images to produce predictions. These predictions are saved as a CSV file and uploaded to Kaggle. Kaggle then scores the predictions using the root mean square error (RMSE) between the model predictions and what the actual values are (these actual values for the test set are kept secret), the lower scores are better. There are certain basic thresholds which can be used to determine if the model behaves as a random classifier or worse. The first is an All Zeros benchmark, this is equivalent to a network that always outputs zeros for all attributes. Similarly, there is an All Ones benchmark; these two benchmarks represent random classifications which, while not entirely trivial to pass, require some rational architectural choices. The final benchmark is harder, a Central Pixel benchmark, which are the predictions if the outputs were simply the central pixel RGB value in each training image. Very early implementations of the \vgg model could pass the All Zero benchmark, later--with the right hyper-parameters-- the model could pass the All Ones and Central Pixel benchmarks. Results through the rest of this paper are based on the RMSE score Kaggle given for a particular model.
 
 \subsection{Performance}
 
@@ -21,10 +16,10 @@ Before immediately attempting data-augmentation methods, a few hyperparameter co
     \begin{tabular}{|r|c|c|}
         \hline
                       & \isize{69} & \isize{106} \\ \hline
-        Batches of 16 & 0.11538 & 0.11062 \\ \hline
-        Batches of 32 & 0.11476 & 0.11288 \\ \hline
+        Batches of 16 & 0.11538 (95) & 0.11062 (78) \\ \hline
+        Batches of 32 & 0.11476 (94) & 0.11288 (88) \\ \hline
     \end{tabular}
-    \caption{Spread of results for various input and batch sizes. In the Kaggle competition this would score 78, 88, 94, 95th place respectively.}
+    \caption{Spread of results for various input and batch sizes. In parentheses after each score denote the place it would have earned in the Kaggle competition.}
     \label{tab:plain_results}
 \end{table}
 
@@ -37,7 +32,7 @@ Results where image size was \isize{69} and where the batch size was 32 or 16 th
 % This figure feels a little redundant
 \pngfigure{32b-106-80-20}{A run with 80/20 training-validation split. Notice the smoother curve versus a run with the same parameters but a 90/10 split.}
 
-Results for the larger images are more in line with expectations. Interestingly, the smaller batches of 16 worked better than 32. This may be surprising compared to the original VGG-16 implementation where input sizes were \isize{224} and their batch was 256. The low learning rate is potentially the parameter solving this. Again, the ImageNet dataset is a little more than an order of magnitude larger than the Galaxy Zoo one, in this aspect the chosen architecture may be overkill and a smaller VGG variant should have been tried out first.
+Results for the larger images are more in line with expectations. Interestingly, the smaller batches of 16 worked better than 32. This may be surprising compared to the original \vgg implementation where input sizes were \isize{224} and their batch was 256. The low learning rate is potentially the parameter solving this. Again, the ImageNet dataset is a little more than an order of magnitude larger than the Galaxy Zoo one, in this aspect the chosen architecture may be overkill and a smaller VGG variant should have been tried out first.
 
 The best run was a simple improvement from an early run where the data was split 90/10 (figure \ref{fig:32b-106-90-10}). This was a rather high split, while it could be trained further the jitter of the validation loss line is cause for concern. It was eventually settled on using the same split which VGG did: 80/20. The results of this run produce an error curve smoother than the one a 90/20 split produced and one which, if desired, could continue to be trained (figure \ref{fig:32b-106-80-20}).
 
@@ -48,7 +43,7 @@ In digital imagery pixels are stored as combinations of three values red, green,
 The results from this color space conversion were not terrific. With a batch of 32 with images the image size of \isize{106} got a score of $0.13778$ worse than any RGB result. The score was worse due to two issues over which there was much rumination. While $V$ may have been regularly high for the features the model is trying to detect, $H$ may have been too varied for the network to converge on. For $S$, the color intensity of images was not very high, and so most colors were close to zero on the saturation scale. The combination of a rapidly fluctuating variable $H$, a regularly small value of $S$ made $V$ comparatively worthless to the network. This score would have earned 178th in the Kaggle competition.
 
 \subsection{Data Augmentation}
-After the examining the results on 32 and 16 batches it was decided to move forward with applying data augmentation to image sizes of \isize{106}. Augmenting with the transformations discussed in section \ref{aug} effectively increases the training data set by a great amount. In an 80/20 split there will be \numprint{49262} training images, when this is augmented there will effectively be \numprint{788198} images. The validation dataset is not augmented as it is needed as unaltered images are best used for a baseline.
+After examining the results on 16 and 32 batches it was decided to move forward with applying data augmentation to image sizes of \isize{106}. Augmenting with the transformations discussed in section \ref{aug} increases the size of the training dataset by a great amount. In an 80/20 split there will be \numprint{49262} training images, when this is augmented there will effectively be \numprint{788198} images. The validation dataset is not augmented as it is needed as unaltered images are best used for a baseline.
 
 \begin{table}[]
     \centering
